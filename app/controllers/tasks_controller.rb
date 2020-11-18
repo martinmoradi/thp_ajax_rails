@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-before_action :authenticate_user!
+  # before_action :authenticate_user!
   def new
     @categories = Category.all
   end
@@ -9,8 +9,10 @@ before_action :authenticate_user!
     @category = Category.find(category_params)
     @task.category = @category
     if @task.save
-      redirect_to root_path
-      flash[:notice] = "Task created"
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js { flash[:notice] = "Task created AJAX" }
+      end
     else
       redirect_to root_path
       flash[:notice] = "Please try again"
@@ -20,14 +22,16 @@ before_action :authenticate_user!
   def edit
     @task = Task.find(params[:id])
     @categories = Category.all
-
   end
 
   def update
     @task = Task.find(params[:id])
     @task.update(task_params)
-    redirect_to tasks_path
-    flash[:notice] = "Task edited"
+    puts @task[:status]
+    respond_to do |format|
+      format.html { redirect_to tasks_path }
+      format.js { }
+    end
   end
 
   def index
@@ -36,19 +40,24 @@ before_action :authenticate_user!
 
   def destroy
     @task = Task.find(params[:id])
-    @task.destroy
-    redirect_to root_path
+    if @task.destroy
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js { flash[:notice] = "Task deleted with AJAX" }
+      end
+    else
+      redirect_to root_path
+      flash[:notice] = "Please try again"
+    end
   end
-
 
   private
 
   def task_params
-    params.permit(:title, :deadline, :description)
+    params.permit(:title, :deadline, :description, :status, :id)
   end
 
   def category_params
     params.require(:Category)
   end
-
 end
