@@ -11,7 +11,9 @@
         <tbody>
           <% @emails.order('created_at DESC').each.with_index do |email, idx| %>
             <tr id="mails" >
+              <!-- Render titles -->
               <%= render "emails/email", email: email %>
+              <!-- Span col 2 row 1 all the way down -->
               <% if idx == 0 %>
                 <td rowspan="<%= @emails.length %>" id="mail_content">
                 </td>
