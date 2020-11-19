@@ -1,0 +1,23 @@
+<div class="container">
+  <%= button_to "Create Email", { action: "create" }, remote: true, class: "btn btn-primary my-3" %>
+  <!-- Main Table -->
+  <table class="table table-bordered table-sm">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col" style="width: 50%">Emails List</th>
+        <th scope="col">Email Content</th>
+      </tr>
+      <thead>
+        <tbody >
+          <% @emails.order('created_at DESC').each.with_index do |email, idx| %>
+            <tr id="mails" >
+              <%= render "emails/email", email: email %>
+              <% if idx == 0 %>
+                <td rowspan="<%= @emails.length %>" id="mail_content">
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>

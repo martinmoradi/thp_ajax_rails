@@ -1,0 +1,3 @@
+<td id="<%= email.id %>">
+  <%= link_to email.object, email_path(email), class: "text-decoration-none text-body", remote: true %> <span class="pull-right"><small><%= email.created_at.strftime("%H:%M, %d/%m/%Y") %></small></span>
+</td>

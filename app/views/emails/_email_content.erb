@@ -1,0 +1,17 @@
+<div class="container" id="<%= @email.id %>">
+  <p id="notice"><%= notice %></p>
+  <p>
+    <h4 class="d-flex justify-content-center"><%= @email.object %></h4>
+  </p>
+  <p>
+    <div class="mail-content d-flex justify-content-center my-5 text-justify">
+      <%= @email.body %>
+    </p>
+    <hr>
+  </div>
+  <div class="buttons d-flex justify-content-between">
+    <%= link_to 'Mark as unread', root_path, class: "btn btn-warning btn-sm ml-5" %>
+    <%= link_to 'Delete', email_path(@email), method: :delete, remote: true, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm mr-5" %>
+  </div>
+  <hr>
+</div>

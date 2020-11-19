@@ -1,0 +1,2 @@
+document.getElementById('mail_content').innerHTML = "";
+document.getElementById('mail_content').insertAdjacentHTML("afterbegin", "<%= j render "emails/email_content", email: @email %>");
