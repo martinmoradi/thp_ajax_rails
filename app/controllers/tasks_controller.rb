@@ -24,16 +24,6 @@ class TasksController < ApplicationController
     @categories = Category.all
   end
 
-  def update
-    @task = Task.find(params[:id])
-    @task.update(task_params)
-    puts @task[:status]
-    respond_to do |format|
-      format.html { redirect_to tasks_path }
-      format.js { }
-    end
-  end
-
   def index
     @tasks = Task.all
   end

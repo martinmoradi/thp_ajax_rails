@@ -1,0 +1,9 @@
+<% @emails.order('created_at DESC').each.with_index do |email, idx| %>
+  <tr id="mails" >
+    <%= render "emails/email", email: email %>
+    <% if idx == 0 %>
+      <td rowspan="<%= @emails.length %>" id="mail_content">
+      </td>
+    <% end %>
+  </tr>
+<% end %>

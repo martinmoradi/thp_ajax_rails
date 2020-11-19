@@ -17,6 +17,21 @@ class EmailsController < ApplicationController
 
   def show
     @email = Email.find(params[:id])
+    @email.read_status = true
+    @email.save
+    respond_to do |format|
+      format.html { redirect_to tasks_path }
+      format.js { }
+    end
+  end
+
+  def update
+    @email = Email.find(params[:id])
+    @email.update(email_params)
+    respond_to do |format|
+      format.html { redirect_to tasks_path }
+      format.js { }
+    end
   end
 
   def index

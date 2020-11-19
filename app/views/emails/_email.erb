@@ -1,3 +1,9 @@
-<td id="<%= email.id %>">
-  <%= link_to email.object, email_path(email), class: "text-decoration-none text-body", remote: true %> <span class="pull-right"><small><%= email.created_at.strftime("%H:%M, %d/%m/%Y") %></small></span>
+<td id="title<%= email.id %>">
+  <% if email.read_status == false %>
+    <strong>
+      <%= link_to email.object, email_path(email), class: "text-decoration-none text-body", remote: true %> <span class="pull-right"><small><%= email.created_at.strftime("%H:%M, %d/%m/%Y") %></small></span>
+    </strong>
+  <% else %>
+    <%= link_to email.object, email_path(email), class: "text-decoration-none text-body", remote: true %> <span class="pull-right"><small><%= email.created_at.strftime("%H:%M, %d/%m/%Y") %></small></span>
+  <% end %>
 </td>

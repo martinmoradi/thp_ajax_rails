@@ -1,3 +1,4 @@
+<% email.read_status = true %>
 <div class="container" id="<%= @email.id %>">
   <p id="notice"><%= notice %></p>
   <p>
@@ -10,7 +11,7 @@
     <hr>
   </div>
   <div class="buttons d-flex justify-content-between">
-    <%= link_to 'Mark as unread', root_path, class: "btn btn-warning btn-sm ml-5" %>
+    <%= link_to "Mark as Unread", email_path(@email), remote: true, class: "btn btn-warning btn-sm mr-5", data: {remote: true, params: { id: email.id, read_status: false}.to_param, method: "put"} %>
     <%= link_to 'Delete', email_path(@email), method: :delete, remote: true, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm mr-5" %>
   </div>
   <hr>
